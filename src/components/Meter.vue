@@ -78,7 +78,7 @@ export default {
 }
 
 .v-slider--vertical {
-  height: 70vh;
+  height: 75vh;
   background: linear-gradient(to top, green, yellow 35%, red 75%);
 }
 
