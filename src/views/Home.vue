@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Meter v-model="value"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Meter from '@/components/Meter.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    Meter,
+  },
+  data() {
+    return {
+      value: 4,
+    };
   },
 };
 </script>
+
+<style scoped>
+.home {
+  margin-top: 10px;
+}
+</style>
