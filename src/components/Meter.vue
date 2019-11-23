@@ -126,7 +126,7 @@ export default {
 
 #meter
   .v-slider__thumb-container--active .v-slider__thumb:before {
-  transform: scale(1.2) !important;
+  transform: scale(1) !important;
   top: 0;
 }
 </style>
