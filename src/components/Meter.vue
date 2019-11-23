@@ -61,7 +61,7 @@ export default {
 }
 
 .v-slider--vertical {
-  height: 80vh;
+  height: 75vh;
   background: linear-gradient(to top, green, yellow 35%, red 75%);
 }
 
@@ -77,7 +77,8 @@ export default {
 
 #meter
   .v-slider--vertical  .v-slider__track-container .v-slider__track-background {
-  background: rgba(255,255,255,0.6) !important;
+  /* background: rgba(255,255,255,0.6) !important; */
+  background: transparent !important;
   border-color: transparent !important;
 }
 
