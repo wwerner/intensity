@@ -22,7 +22,7 @@ export default {
       this.$store.commit('track', { subject: 'subject', intensity: this.value });
     },
   },
-  mounted() {
+  created() {
     this.value = this.$store.getters.latestIntensity.intensity || 1;
   },
 };

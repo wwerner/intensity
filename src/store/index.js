@@ -10,12 +10,10 @@ export default new Vuex.Store({
     intensities: [],
   },
   mutations: {
-    track: (state, { subject, intensity }) => {
-      state.intensities.push({
-        timestamp: Date.now(),
-        subject,
-        intensity,
-      });
+    track: (state, item) => {
+      const itemWithTime = item;
+      itemWithTime.timestamp = Date.now();
+      state.intensities.push(itemWithTime);
     },
     deleteHistory: (state) => {
       state.intensities = [];
