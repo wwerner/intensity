@@ -2,7 +2,8 @@
   <v-app id="app">
     <router-view/>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Intensität</router-link> |
+      <router-link to="/settings">Einstellungen</router-link> |
       <router-link to="/about">About</router-link>
     </div>
   </v-app>

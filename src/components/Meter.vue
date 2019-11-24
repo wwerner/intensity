@@ -27,8 +27,6 @@ export default {
   props: {
     value: {
       type: Number,
-      required: true,
-      default: 4,
     },
     caption: {
       type: Boolean,

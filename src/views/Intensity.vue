@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Meter v-model="value"/>
+    <Meter v-model="value" @input="track"/>
   </div>
 </template>
 
@@ -14,8 +14,16 @@ export default {
   },
   data() {
     return {
-      value: 4,
+      value: 1,
     };
+  },
+  methods: {
+    track() {
+      this.$store.commit('track', { subject: 'subject', intensity: this.value });
+    },
+  },
+  mounted() {
+    this.value = this.$store.getters.latestIntensity.intensity || 1;
   },
 };
 </script>
