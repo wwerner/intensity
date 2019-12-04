@@ -13,7 +13,7 @@
           >
             <template v-slot:activator>
               <v-btn
-                color="blue darken-2"
+                color="primary"
                 dark
                 fab
               >
@@ -34,7 +34,7 @@
               fab
               dark
               small
-              color="yellow"
+              color="yellow darken-2"
               to="/about"
             >
               <v-icon>mdi-information-outline</v-icon>
