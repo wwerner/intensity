@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Intensity from '../views/Intensity.vue';
 import Settings from '../views/Settings.vue';
+import Chart from '../views/Chart.vue';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: Settings,
+  },
+  {
+    path: '/chart',
+    name: 'chart',
+    component: Chart,
   },
   {
     path: '/about',

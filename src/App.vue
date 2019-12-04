@@ -26,7 +26,7 @@
               dark
               small
               color="green"
-              to="/about"
+              to="/chart"
             >
               <v-icon>mdi-chart-bell-curve</v-icon>
             </v-btn>
