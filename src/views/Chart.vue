@@ -1,5 +1,9 @@
 <template>
   <div class="chart">
+    <chart
+      :dataset="example"
+      :options="options"
+    ></chart>
     <v-sparkline
       :gradient="['red','yellow', 'green',]"
       :smooth="true"
@@ -10,20 +14,60 @@
 </template>
 
 <script>
+import Chart from '../components/Chart';
+
 export default {
+  components: { Chart },
   data() {
     return {
       value: 1,
+      example: {
+        datasets: [
+          {
+            data: [
+              { y: 1.1, t: 1575629737440 },
+              { y: 1.6, t: 1575629740334 },
+              { y: 9.3, t: 1575629741698 },
+              { y: 1.8, t: 1575629743129 },
+              { y: 6.2, t: 1575629744057 },
+            ],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+            },
+          }],
+        },
+      },
     };
   },
   computed: {
     values() {
       return this.$store.state.intensities.map(e => e.intensity);
     },
+    dataset() {
+      return {
+        labels: ['i', 't'],
+        datasets: [{
+          label: 'Intensity',
+          fill: true,
+          data: this.$store.state.intensities.map(e => (
+            {
+              y: e.intensity,
+              t: e.timestamp,
+            })),
+        }],
+      };
+    },
   },
   methods: {
     track() {
-      this.$store.commit('track', { subject: 'subject', intensity: this.value });
+      this.$store.commit('track', { intensity: this.value });
     },
   },
   created() {
