@@ -1,9 +1,5 @@
 <template>
   <div class="chart">
-    <chart
-      :dataset="example"
-      :options="options"
-    ></chart>
     <v-sparkline
       :gradient="['red','yellow', 'green',]"
       :smooth="true"
@@ -14,10 +10,8 @@
 </template>
 
 <script>
-import Chart from '../components/Chart';
 
 export default {
-  components: { Chart },
   data() {
     return {
       value: 1,
@@ -52,16 +46,21 @@ export default {
     },
     dataset() {
       return {
-        labels: ['i', 't'],
         datasets: [{
           label: 'Intensity',
           fill: true,
           data: this.$store.state.intensities.map(e => (
             {
               y: e.intensity,
-              t: e.timestamp,
+              t: new Date(e.timestamp),
             })),
         }],
+      };
+    },
+    styles() {
+      return {
+        height: '50px',
+        position: 'relative',
       };
     },
   },
