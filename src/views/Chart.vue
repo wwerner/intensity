@@ -20,6 +20,28 @@ import histogramInit from 'highcharts/modules/histogram-bellcurve';
 brokenInit(Highcharts);
 histogramInit(Highcharts);
 
+Highcharts.setOptions({
+  lang: {
+    decimalPoint: ',',
+    thousandsSep: '.',
+    loading: 'Daten werden geladen...',
+    months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+    shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+    exportButtonTitle: 'Exportieren',
+    printButtonTitle: 'Drucken',
+    rangeSelectorFrom: 'Von',
+    rangeSelectorTo: 'Bis',
+    rangeSelectorZoom: 'Zeitraum',
+    downloadPNG: 'Download als PNG-Bild',
+    downloadJPEG: 'Download als JPEG-Bild',
+    downloadPDF: 'Download als PDF-Dokument',
+    downloadSVG: 'Download als SVG-Bild',
+    resetZoom: 'Zoom zurücksetzen',
+    resetZoomTitle: 'Zoom zurücksetzen',
+  },
+});
+
 export default {
   components: {
     highcharts: Chart,
@@ -36,17 +58,20 @@ export default {
           zoomType: 'x',
         },
         title: {
-          text: 'Verlauf',
+          text: '',
         },
         xAxis: {
           type: 'datetime',
           breaks: this.breaks,
           tickInterval: 60000,
+          lineWidth: 0,
+          minorGridLineWidth: 0,
+          lineColor: 'transparent',
+          minorTickLength: 0,
+          tickLength: 0,
         },
         yAxis: {
-          title: {
-            text: 'Intensität',
-          },
+          visible: false,
         },
         legend: {
           enabled: false,
@@ -84,7 +109,7 @@ export default {
           {
             id: 'intensities-1',
             type: 'areaspline',
-            name: 'Intensität',
+            name: '',
             data: this.dataset,
           },
         ],
