@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <highcharts :options="example"></highcharts>
+    <highcharts :options="chartData"></highcharts>
 
     <v-sparkline
       :gradient="['red','yellow', 'green',]"
@@ -14,9 +14,12 @@
 <script>
 import { Chart } from 'highcharts-vue';
 import Highcharts from 'highcharts';
-import exportingInit from 'highcharts/modules/broken-axis';
+import brokenInit from 'highcharts/modules/broken-axis';
+import histogramInit from 'highcharts/modules/histogram-bellcurve';
 
-exportingInit(Highcharts);
+brokenInit(Highcharts);
+histogramInit(Highcharts);
+
 export default {
   components: {
     highcharts: Chart,
@@ -27,7 +30,7 @@ export default {
     };
   },
   computed: {
-    example() {
+    chartData() {
       return {
         chart: {
           zoomType: 'x',
@@ -38,6 +41,7 @@ export default {
         xAxis: {
           type: 'datetime',
           breaks: this.breaks,
+          tickInterval: 60000,
         },
         yAxis: {
           title: {
@@ -76,11 +80,14 @@ export default {
           },
         },
 
-        series: [{
-          type: 'area',
-          name: 'Intensität',
-          data: this.dataset,
-        }],
+        series: [
+          {
+            id: 'intensities-1',
+            type: 'areaspline',
+            name: 'Intensität',
+            data: this.dataset,
+          },
+        ],
       };
     },
     values() {
@@ -90,13 +97,11 @@ export default {
       return this.$store.state.intensities.map(e => [e.timestamp, e.intensity]);
     },
     breaks() {
-      return [
-        {
-          from: 1575821226390,
-          to: 1575871075020,
-          breakSize: 3600000,
-        },
-      ];
+      return [{
+        from: 1575821226387,
+        to: 1575871075028,
+        breakSize: 1000 * 60 * 10,
+      }];
     },
   },
   methods: {
