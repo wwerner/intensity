@@ -77,7 +77,7 @@ export default {
           enabled: false,
         },
         plotOptions: {
-          area: {
+          areaspline: {
             fillColor: {
               linearGradient: {
                 x1: 0,
@@ -86,16 +86,18 @@ export default {
                 y2: 1,
               },
               stops: [
-                [0, Highcharts.getOptions().colors[0]],
-                [1, Highcharts.Color(Highcharts.getOptions().colors[0])
-                  .setOpacity(0)
-                  .get('rgba')],
+                [0, Highcharts.Color('#F00').setOpacity(1).get('rgba')],
+                [0.6, Highcharts.Color('#FFA500').setOpacity(1).get('rgba')],
+                [0.7, Highcharts.Color('#FF0').setOpacity(1).get('rgba')],
+                [1, Highcharts.Color('#0F0').setOpacity(1).get('rgba')],
               ],
             },
             marker: {
               radius: 2,
+              fillColor: '#424242',
             },
-            lineWidth: 1,
+            lineWidth: 0,
+            lineColor: 'transparent',
             states: {
               hover: {
                 lineWidth: 1,
