@@ -16,6 +16,7 @@
                 color="primary"
                 dark
                 fab
+                aria-label="Menü"
               >
                 <v-icon v-if="menu">mdi-close</v-icon>
                 <v-icon v-else>mdi-menu</v-icon>
@@ -27,6 +28,7 @@
               small
               color="green"
               to="/chart"
+              aria-label="Auswertung"
             >
               <v-icon>mdi-chart-bell-curve</v-icon>
             </v-btn>
@@ -36,6 +38,7 @@
               small
               color="yellow darken-2"
               to="/about"
+              aria-label="Über"
             >
               <v-icon>mdi-information-outline</v-icon>
             </v-btn>
@@ -45,6 +48,7 @@
               small
               color="orange"
               to="/settings"
+              aria-label="Einstellungen"
             >
               <v-icon>mdi-settings</v-icon>
             </v-btn>
@@ -54,6 +58,7 @@
               small
               color="red"
               to="/"
+              aria-label="Intensität"
             >
               <v-icon>mdi-thermometer</v-icon>
             </v-btn>
