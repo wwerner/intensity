@@ -1,14 +1,7 @@
 <template>
-  <div class="chart">
-    <highcharts :options="chartData"></highcharts>
-
-    <v-sparkline
-      :gradient="['red','yellow', 'green',]"
-      :smooth="true"
-      :value="values"
-      auto-draw
-    ></v-sparkline>
-  </div>
+<div class="chart">
+  <highcharts ref="chart" :options="chartData" v-resize="handleResize"></highcharts>
+</div>
 </template>
 
 <script>
@@ -56,22 +49,33 @@ export default {
       return {
         chart: {
           zoomType: 'x',
+          height: window.innerHeight - 50,
+          backgroundColor: 'transparent',
         },
         title: {
           text: '',
+        },
+        tooltip: {
+          borderColor: Highcharts.Color('#424242')
+            .setOpacity(0.1)
+            .get('rgba'),
+          borderRadius: 20,
         },
         xAxis: {
           type: 'datetime',
           breaks: this.breaks,
           tickInterval: 60000,
           lineWidth: 0,
-          minorGridLineWidth: 0,
-          lineColor: 'transparent',
           minorTickLength: 0,
           tickLength: 0,
         },
         yAxis: {
-          visible: false,
+          visible: true,
+          lineWidth: 0,
+          title: '',
+          min: 0,
+          max: 10,
+          allowDecimals: false,
         },
         legend: {
           enabled: false,
@@ -86,10 +90,18 @@ export default {
                 y2: 1,
               },
               stops: [
-                [0, Highcharts.Color('#F00').setOpacity(1).get('rgba')],
-                [0.6, Highcharts.Color('#FFA500').setOpacity(1).get('rgba')],
-                [0.7, Highcharts.Color('#FF0').setOpacity(1).get('rgba')],
-                [1, Highcharts.Color('#0F0').setOpacity(1).get('rgba')],
+                [0, Highcharts.Color('#F00')
+                  .setOpacity(1)
+                  .get('rgba')],
+                [0.6, Highcharts.Color('#FFA500')
+                  .setOpacity(1)
+                  .get('rgba')],
+                [0.7, Highcharts.Color('#FF0')
+                  .setOpacity(1)
+                  .get('rgba')],
+                [1, Highcharts.Color('#0F0')
+                  .setOpacity(1)
+                  .get('rgba')],
               ],
             },
             marker: {
@@ -113,6 +125,7 @@ export default {
             type: 'areaspline',
             name: '',
             data: this.dataset,
+            color: '#424242',
           },
         ],
       };
@@ -124,26 +137,22 @@ export default {
       return this.$store.state.intensities.map(e => [e.timestamp, e.intensity]);
     },
     breaks() {
-      return [{
-        from: 1575821226387,
-        to: 1575871075028,
-        breakSize: 1000 * 60 * 10,
-      }];
+      return [];
     },
   },
   methods: {
     track() {
       this.$store.commit('track', { intensity: this.value });
     },
-    created() {
-      this.value = this.$store.getters.latestIntensity.intensity || 1;
+    handleResize() {
+      this.$refs.chart.chart.redraw();
     },
   },
 };
 </script>
 
 <style>
-  .highcharts-credits {
-    display: none;
-  }
+.highcharts-credits {
+  display: none;
+}
 </style>
