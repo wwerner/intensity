@@ -1,6 +1,6 @@
 <template>
 <v-app id="app" style="width: 100%">
-  <v-container fluid>
+  <v-container>
     <v-row class="child-flex">
       <v-col cols="12">
         <transition
@@ -11,7 +11,7 @@
         </transition>
         <v-speed-dial
           v-model="menu"
-          bottom absolute right
+          bottom absolute right fixed
           direction="top"
           transition="slide-y-reverse-transition"
         >

@@ -1,8 +1,13 @@
 <template>
 <div id="meter-container" v-resize="handleResize">
-  <v-row v-if="portrait">
-    <v-col cols="2"></v-col>
+  <v-row v-if="!landscape" justify="center">
     <v-col cols="4">
+      <div id="meter-caption" v-if="caption"
+           :style="{color: valueColor, textAlign: 'center'}">
+        {{ internalValue }}
+      </div>
+    </v-col>
+    <v-col cols="6">
       <div id="meter">
         <v-slider
           vertical
@@ -16,11 +21,7 @@
         </v-slider>
       </div>
     </v-col>
-    <v-col cols="5">
-      <div id="meter-caption" v-if="caption" :style="{color: valueColor, textAlign: 'right'}">
-        {{ internalValue }}
-      </div>
-    </v-col>
+    <v-spacer v-if="$vuetify.breakpoint.xs"></v-spacer>
   </v-row>
   <v-row v-if="landscape">
     <v-col>
@@ -56,6 +57,7 @@ export default {
       internalValue: 0,
       // eslint-disable-next-line no-restricted-globals
       landscape: screen.width > screen.height,
+      meterHeight: 0,
     };
   },
   props: {
@@ -72,15 +74,13 @@ export default {
       default: true,
     },
   },
-  computed: {
-    portrait() {
-      return !this.landscape;
-    },
-  },
+  computed: {},
   methods: {
     handleResize() {
-      // eslint-disable-next-line no-restricted-globals
-      this.landscape = screen.width > screen.height;
+      this.landscape = window.innerWidth > window.innerHeight;
+    },
+    captionMarginTop() {
+      return `${this.meterHeight - ((this.meterHeight) / 10 * this.internalValue)}px`;
     },
     valueColor() {
       return 'black';
@@ -104,6 +104,10 @@ export default {
   },
   mounted() {
     this.internalValue = this.value;
+    this.$nextTick(() => {
+      this.meterHeight = document.getElementById('meter')
+        .getBoundingClientRect().height;
+    });
   },
 };
 </script>
@@ -115,7 +119,7 @@ export default {
 
 #meter-caption {
   font-family: "Roboto", sans-serif;
-  font-size: 4em;
+  font-size: 3.5em;
   font-weight: bold;
   margin-top: -0.25em;
   margin-left: 0.25em;
@@ -183,6 +187,12 @@ export default {
 .v-slider__thumb-container--active .v-slider__thumb:before {
   transform: scale(1.1) !important;
   top: 0;
+}
+
+@media (orientation: portrait) {
+  #meter {
+    width: 100px !important;
+  }
 }
 
 @media (orientation: landscape) {
