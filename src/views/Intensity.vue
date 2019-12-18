@@ -1,7 +1,11 @@
 <template>
-  <div class="home">
-    <Meter v-model="value" @input="track"/>
-  </div>
+<div class="home">
+  <Meter
+    v-model="value"
+    @input="track"
+    :step-size="$store.state.settings.stepSize"
+  />
+</div>
 </template>
 
 <script>
@@ -19,7 +23,10 @@ export default {
   },
   methods: {
     track() {
-      this.$store.commit('track', { subject: 'subject', intensity: this.value });
+      this.$store.commit('track', {
+        subject: 'subject',
+        intensity: this.value,
+      });
     },
   },
   created() {

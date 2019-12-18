@@ -8,12 +8,18 @@ export default new Vuex.Store({
   state: {
     version: '1.0.0',
     intensities: [],
+    settings: {
+      stepSize: 0.1,
+    },
   },
   mutations: {
     track: (state, item) => {
       const itemWithTime = item;
       itemWithTime.timestamp = Date.now();
       state.intensities.push(itemWithTime);
+    },
+    setStepSize: (state, stepSize) => {
+      state.settings.stepSize = stepSize;
     },
     deleteHistory: (state) => {
       state.intensities = [];

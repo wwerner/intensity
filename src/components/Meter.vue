@@ -54,12 +54,15 @@ export default {
   data() {
     return {
       internalValue: 0,
-      stepSize: 0.1,
       // eslint-disable-next-line no-restricted-globals
       landscape: screen.width > screen.height,
     };
   },
   props: {
+    stepSize: {
+      type: Number,
+      default: 0.1,
+    },
     value: {
       type: Number,
     },
@@ -185,7 +188,7 @@ export default {
 @media (orientation: landscape) {
   #meter
   .v-slider__thumb {
-    transform: rotate(90deg) translateX(-25px)!important;
+    transform: rotate(90deg) translateX(-25px) !important;
   }
 }
 </style>
