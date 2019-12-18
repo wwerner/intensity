@@ -1,14 +1,11 @@
 <template>
 <div id="meter-container" v-resize="handleResize">
   <v-row v-if="!landscape" justify="center">
-    <v-col cols="4">
       <div id="meter-caption" v-if="caption"
            :style="{color: valueColor, textAlign: 'center'}">
         {{ internalValue }}
       </div>
-    </v-col>
-    <v-col cols="6">
-      <div id="meter">
+      <div id="meter" style="margin: auto;">
         <v-slider
           vertical
           min="0"
@@ -20,8 +17,6 @@
         >
         </v-slider>
       </div>
-    </v-col>
-    <v-spacer v-if="$vuetify.breakpoint.xs"></v-spacer>
   </v-row>
   <v-row v-if="landscape">
     <v-col>
@@ -30,7 +25,7 @@
       </div>
     </v-col>
   </v-row>
-  <v-row v-if="landscape">
+  <v-row v-if="landscape" align="center" style="height: 80vh">
     <v-col>
       <div id="meter">
         <v-slider
@@ -121,8 +116,9 @@ export default {
   font-family: "Roboto", sans-serif;
   font-size: 3.5em;
   font-weight: bold;
-  margin-top: -0.25em;
-  margin-left: 0.25em;
+  position: fixed;
+  top: 0;
+  left: 0.25em;
 }
 
 #meter .v-slider--vertical {
