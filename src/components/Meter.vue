@@ -1,27 +1,62 @@
 <template>
-<div id="meter-container">
-  <div id="meter-caption" v-if="caption" :style="{color: valueColor}">{{ internalValue }}</div>
-  <div id="meter">
-    <v-slider
-      vertical
-      min="0"
-      max="10"
-      step="0.1"
-      v-model="internalValue"
-      v-on:touchstart.native="convertToMousedown"
-      @change="$emit('input', internalValue)"
-    >
-    </v-slider>
-  </div>
+<div id="meter-container" v-resize="handleResize">
+  <v-row v-if="portrait">
+    <v-col cols="2"></v-col>
+    <v-col cols="4">
+      <div id="meter">
+        <v-slider
+          vertical
+          min="0"
+          max="10"
+          :step="stepSize"
+          v-model="internalValue"
+          v-on:touchstart.native="convertToMousedown"
+          @change="$emit('input', internalValue)"
+        >
+        </v-slider>
+      </div>
+    </v-col>
+    <v-col cols="5">
+      <div id="meter-caption" v-if="caption" :style="{color: valueColor, textAlign: 'right'}">
+        {{ internalValue }}
+      </div>
+    </v-col>
+  </v-row>
+  <v-row v-if="landscape">
+    <v-col>
+      <div id="meter-caption" v-if="caption" :style="{color: valueColor, textAlign: 'left'}">
+        {{ internalValue }}
+      </div>
+    </v-col>
+  </v-row>
+  <v-row v-if="landscape">
+    <v-col>
+      <div id="meter">
+        <v-slider
+          min="0"
+          max="10"
+          :step="stepSize"
+          v-model="internalValue"
+          v-on:touchstart.native="convertToMousedown"
+          @change="$emit('input', internalValue)"
+        >
+        </v-slider>
+      </div>
+    </v-col>
+  </v-row>
 </div>
 </template>
 
 <script>
+
 export default {
   name: 'Meter',
   data() {
     return {
       internalValue: 0,
+      stepSize: 0.1,
+      // eslint-disable-next-line no-restricted-globals
+      landscape: screen.width > screen.height,
     };
   },
   props: {
@@ -34,8 +69,16 @@ export default {
       default: true,
     },
   },
-  computed: {},
+  computed: {
+    portrait() {
+      return !this.landscape;
+    },
+  },
   methods: {
+    handleResize() {
+      // eslint-disable-next-line no-restricted-globals
+      this.landscape = screen.width > screen.height;
+    },
     valueColor() {
       return 'black';
     },
@@ -64,20 +107,27 @@ export default {
 
 <style>
 #meter-container {
-  width: 100px;
   margin: auto;
 }
 
 #meter-caption {
   font-family: "Roboto", sans-serif;
-  text-align: center;
-  font-size: 3em;
+  font-size: 4em;
   font-weight: bold;
+  margin-top: -0.25em;
+  margin-left: 0.25em;
 }
 
-.v-slider--vertical {
-  height: 75vh;
+#meter .v-slider--vertical {
+  height: 82vh;
   background: linear-gradient(to top, green, yellow 35%, red 75%);
+}
+
+#meter .v-slider--horizontal {
+  margin-left: 1.25em;
+  margin-right: 1.25em;
+  height: 100px;
+  background: linear-gradient(to right, green, yellow 35%, red 75%);
 }
 
 #meter .v-slider--vertical .v-slider__track-container {
@@ -85,20 +135,7 @@ export default {
 }
 
 #meter
-.v-slider--vertical .v-slider__track-container .primary {
-  background: transparent !important;
-  border-color: transparent !important;
-}
-
-#meter
-.v-slider--vertical .v-slider__track-container .v-slider__track-background {
-  /* background: rgba(255,255,255,0.6) !important; */
-  background: transparent !important;
-  border-color: transparent !important;
-}
-
-#meter
-.v-slider--vertical .v-slider__track-container .v-slider__track-fill {
+.v-slider .v-slider__track-container .primary {
   background: transparent !important;
   border-color: transparent !important;
 }
@@ -141,7 +178,14 @@ export default {
 
 #meter
 .v-slider__thumb-container--active .v-slider__thumb:before {
-  transform: scale(1) !important;
+  transform: scale(1.1) !important;
   top: 0;
+}
+
+@media (orientation: landscape) {
+  #meter
+  .v-slider__thumb {
+    transform: rotate(90deg) translateX(-25px)!important;
+  }
 }
 </style>
