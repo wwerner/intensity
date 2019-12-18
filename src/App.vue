@@ -3,8 +3,9 @@
     <v-container fluid>
       <v-row class="child-flex">
         <v-col cols="12">
-          <router-view/>
-
+          <v-fade-transition>
+            <router-view/>
+          </v-fade-transition>
           <v-speed-dial
             v-model="menu"
             bottom absolute right
