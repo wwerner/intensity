@@ -90,12 +90,18 @@ export default {
   data() {
     return {
       menu: false,
-      updateNotification: this.$store.state.updateAvailable,
+      updateNotification: this.$store.state.needsUpdate,
     };
   },
   computed: {
-    updateAvailable() { return this.$store.state.updateAvailable; },
+    updateAvailable() { return this.$store.state.needsUpdate; },
   },
+  watch: {
+    updateAvailable: function (updateAvailable) {
+      this.updateNotification = !!updateAvailable;
+    },
+  },
+  methods: {},
 };
 </script>
 

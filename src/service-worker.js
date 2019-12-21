@@ -1,10 +1,8 @@
 /* eslint no-restricted-globals: 0 */
 /* eslint no-underscore-dangle: 0 */
-
-let workbox;
+/* eslint no-undef: 0 */
 
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 self.addEventListener('message', (msg) => {

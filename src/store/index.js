@@ -42,6 +42,7 @@ export default new Vuex.Store({
   },
   actions: {
     update(context) {
+      context.commit('updateInstalled');
       if (context.state.updateWorker) {
         context.state.updateWorker.postMessage({ action: 'skipWaiting' });
       }
@@ -49,6 +50,7 @@ export default new Vuex.Store({
   },
   modules: {},
   plugins: [createPersistedState({
-    key: 'intensity-v2',
+    key: 'intensity-v3',
+    paths: ['intensities', 'settings'],
   })],
 });

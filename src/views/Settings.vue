@@ -4,15 +4,19 @@
       <v-icon left>mdi-plus-one</v-icon>
       <span style="width: 100%">{{ stepToggleMessage }}</span>
     </v-btn>
-    <v-btn class="ma-1" block @click="$store.commit('deleteHistory')" color="warning" outlined>
+    <v-btn class="ma-1" block
+           color="warning" outlined
+           @click="$store.commit('deleteHistory')"
+    >
       <v-icon left>mdi-delete</v-icon>
       <span style="width: 100%">Verlauf löschen</span>
     </v-btn>
     <v-btn class="ma-1" block color="secondary" outlined
-           :disabled="!$store.state.updateAvailable"
+           :disabled="!$store.state.needsUpdate"
+           @click="$store.dispatch('update')"
     >
       <v-icon left>mdi-cellphone-arrow-down</v-icon>
-      <span style="width: 100%" v-if="$store.state.updateAvailable">
+      <span style="width: 100%" v-if="$store.state.needsUpdate">
         Neueste Version installieren
       </span>
       <span style="width: 100%" v-else>Aktuellste Version ist installiert</span>
