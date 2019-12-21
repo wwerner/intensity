@@ -6,11 +6,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    version: '1.0.0',
     intensities: [],
     settings: {
       stepSize: 0.1,
     },
+    needsUpdate: false,
+    updateWorker: undefined,
   },
   mutations: {
     track: (state, item) => {
@@ -24,6 +25,13 @@ export default new Vuex.Store({
     deleteHistory: (state) => {
       state.intensities = [];
     },
+    updateAvailable: (state, worker) => {
+      state.needsUpdate = true;
+      state.updateWorker = worker;
+    },
+    updateInstalled: (state) => {
+      state.needsUpdate = false;
+    },
   },
   getters: {
     latestIntensity: state => state.intensities[state.intensities.length - 1] || {
@@ -32,7 +40,13 @@ export default new Vuex.Store({
       intensity: 1,
     },
   },
-  actions: {},
+  actions: {
+    update(context) {
+      if (context.state.updateWorker) {
+        context.state.updateWorker.postMessage({ action: 'skipWaiting' });
+      }
+    },
+  },
   modules: {},
   plugins: [createPersistedState({
     key: 'intensity-v2',

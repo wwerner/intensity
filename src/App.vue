@@ -67,6 +67,19 @@
             <v-icon>mdi-thermometer</v-icon>
           </v-btn>
         </v-speed-dial>
+        <v-snackbar v-model="updateNotification" top color="primary" :timeout="0">
+          <v-icon dark>mdi-cellphone-arrow-down</v-icon>
+          Update verfügbar. Installieren?
+          <v-spacer></v-spacer>
+          <v-btn success icon
+            @click="$store.dispatch('update')">
+            <v-icon>mdi-check-circle</v-icon>
+          </v-btn>
+          <v-btn success icon
+                 @click="updateNotification = false">
+            <v-icon>mdi-close-circle</v-icon>
+          </v-btn>
+        </v-snackbar>
       </v-col>
     </v-row>
   </v-container>
@@ -77,7 +90,11 @@ export default {
   data() {
     return {
       menu: false,
+      updateNotification: this.$store.state.updateAvailable,
     };
+  },
+  computed: {
+    updateAvailable() { return this.$store.state.updateAvailable; },
   },
 };
 </script>
