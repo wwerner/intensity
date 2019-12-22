@@ -8,9 +8,11 @@
       Der Verlauf wird ausschließlich auf dem Gerät des Benutzers gespeichert.
     </p>
 
-    <h2>Technologie</h2>
+    <p>Entwickelt mit <v-icon color="red">mdi-heart</v-icon> in Zusammenarbeit von <a href="https://www.wernerakila.de/">Linda</a>
+    und <a href="https://www.wolfgang-werner.net/">Wolfgang</a>.</p>
     <v-btn
       link
+      block
       href="https://github.com/wwerner/intensity"
     >
       <v-icon>mdi-github-circle</v-icon>
