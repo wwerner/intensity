@@ -1,8 +1,5 @@
 <template>
   <div class="about">
-    <h1>Über Intensity</h1>
-    <h2>Anwendungsbereich</h2>
-    <h2>Datenschutz</h2>
     <p>
       <b>Intensity</b> verwendet keine Cookies und sammelt keinerlei Daten über den Benutzer.
       Der Verlauf wird ausschließlich auf dem Gerät des Benutzers gespeichert.
@@ -15,14 +12,15 @@
     </p>
 
     <p>
-      Auch gemacht mit <a href="https://vuejs.org/">vue.js</a>,
+      Auch gemacht mit <v-icon color="#3eaf7c">mdi-vuejs</v-icon> <a href="https://vuejs.org/">vue.js</a>,
       <a href="https://vuex.vuejs.org/">vuex</a>,
-      <a href="https://vuetifyjs.com/">Vuetify</a> und
+      <v-icon color="#1976D2">mdi-vuetify</v-icon> <a href="https://vuetifyjs.com/">Vuetify</a> und
+      <a href="https://date-fns.org/">date-fns</a> und
       <a href="https://www.highcharts.com/">Highcharts</a>.
-      Gehosted auf <a href="">Zeit</a>.
+      Gehosted auf <v-icon color="black">mdi-triangle</v-icon><a href="https://zeit.co/">Zeit</a>.
     </p>
     <p>
-      Lizensiert unter der <a href="https://github.com/wwerner/intensity/blob/master/LICENSE.txt">MIT Lizenz</a>
+      Open Source, lizensiert unter der <a href="https://github.com/wwerner/intensity/blob/master/LICENSE.txt">MIT Lizenz</a>.
     </p>
     <v-btn
       link
@@ -30,7 +28,8 @@
       href="https://github.com/wwerner/intensity"
     >
       <v-icon>mdi-github-circle</v-icon>
-      Source Code
+      <v-spacer></v-spacer>
+      <span style="width: 100%">Source Code</span>
     </v-btn>
   </div>
 </template>
