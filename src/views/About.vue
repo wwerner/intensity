@@ -1,8 +1,8 @@
 <template>
   <div class="about">
     <p>
-      <b>Intensity</b> verwendet keine Cookies und sammelt keinerlei Daten über den Benutzer.
-      Der Verlauf wird ausschließlich auf dem Gerät des Benutzers gespeichert.
+      <b>Intensity</b> verwendet keine Cookies und sammelt keine Daten über den Benutzer.
+      Der Verlauf wird nur auf dem Gerät des Benutzers gespeichert.
     </p>
 
     <p>Gemacht mit
