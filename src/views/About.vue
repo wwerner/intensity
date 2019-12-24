@@ -8,8 +8,22 @@
       Der Verlauf wird ausschließlich auf dem Gerät des Benutzers gespeichert.
     </p>
 
-    <p>Entwickelt mit <v-icon color="red">mdi-heart</v-icon> in Zusammenarbeit von <a href="https://www.wernerakila.de/">Linda</a>
-    und <a href="https://www.wolfgang-werner.net/">Wolfgang</a>.</p>
+    <p>Gemacht mit
+      <v-icon color="red">mdi-heart</v-icon>
+      von <a href="https://www.wernerakila.de/">Linda</a>
+      und <a href="https://www.wolfgang-werner.net/">Wolfgang</a>.
+    </p>
+
+    <p>
+      Auch gemacht mit <a href="https://vuejs.org/">vue.js</a>,
+      <a href="https://vuex.vuejs.org/">vuex</a>,
+      <a href="https://vuetifyjs.com/">Vuetify</a> und
+      <a href="https://www.highcharts.com/">Highcharts</a>.
+      Gehosted auf <a href="">Zeit</a>.
+    </p>
+    <p>
+      Lizensiert unter der <a href="https://github.com/wwerner/intensity/blob/master/LICENSE.txt">MIT Lizenz</a>
+    </p>
     <v-btn
       link
       block

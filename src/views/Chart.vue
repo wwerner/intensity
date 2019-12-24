@@ -6,26 +6,18 @@
 
 <script>
 import { Chart } from 'highcharts-vue';
+import { formatDistanceToNow } from 'date-fns';
+import { de } from 'date-fns/locale';
 import Highcharts from 'highcharts';
-import brokenInit from 'highcharts/modules/broken-axis';
-import histogramInit from 'highcharts/modules/histogram-bellcurve';
-
-brokenInit(Highcharts);
-histogramInit(Highcharts);
+import utils from '../utils';
 
 Highcharts.setOptions({
   lang: {
     decimalPoint: ',',
     thousandsSep: '.',
     loading: 'Daten werden geladen...',
-    months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-    weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-    shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
     exportButtonTitle: 'Exportieren',
     printButtonTitle: 'Drucken',
-    rangeSelectorFrom: 'Von',
-    rangeSelectorTo: 'Bis',
-    rangeSelectorZoom: 'Zeitraum',
     downloadPNG: 'Download als PNG-Bild',
     downloadJPEG: 'Download als JPEG-Bild',
     downloadPDF: 'Download als PDF-Dokument',
@@ -51,6 +43,7 @@ export default {
           zoomType: 'x',
           height: window.innerHeight - 50,
           backgroundColor: 'transparent',
+          responsive: true,
         },
         title: {
           text: '',
@@ -60,17 +53,18 @@ export default {
             .setOpacity(0.1)
             .get('rgba'),
           borderRadius: 20,
+          formatter: function () {
+            return `<b>${this.point.y}</b>, ${formatDistanceToNow(this.point.t, { locale: de, addSuffix: true })}`;
+          },
         },
         xAxis: {
-          type: 'datetime',
-          breaks: this.breaks,
-          tickInterval: 60000,
           lineWidth: 0,
           minorTickLength: 0,
           tickLength: 0,
+          visible: false,
         },
         yAxis: {
-          visible: true,
+          visible: false,
           lineWidth: 0,
           title: '',
           min: 0,
@@ -81,29 +75,7 @@ export default {
           enabled: false,
         },
         plotOptions: {
-          areaspline: {
-            fillColor: {
-              linearGradient: {
-                x1: 0,
-                y1: 0,
-                x2: 0,
-                y2: 1,
-              },
-              stops: [
-                [0, Highcharts.Color('#F00')
-                  .setOpacity(1)
-                  .get('rgba')],
-                [0.6, Highcharts.Color('#FFA500')
-                  .setOpacity(1)
-                  .get('rgba')],
-                [0.7, Highcharts.Color('#FF0')
-                  .setOpacity(1)
-                  .get('rgba')],
-                [1, Highcharts.Color('#0F0')
-                  .setOpacity(1)
-                  .get('rgba')],
-              ],
-            },
+          column: {
             marker: {
               radius: 2,
               fillColor: '#424242',
@@ -122,22 +94,19 @@ export default {
         series: [
           {
             id: 'intensities-1',
-            type: 'areaspline',
+            type: 'column',
             name: '',
             data: this.dataset,
-            color: '#424242',
           },
         ],
       };
     },
-    values() {
-      return this.$store.state.intensities.map(e => e.intensity);
-    },
     dataset() {
-      return this.$store.state.intensities.map(e => [e.timestamp, e.intensity]);
-    },
-    breaks() {
-      return [];
+      return this.$store.state.intensities.map(e => ({
+        t: e.timestamp,
+        y: e.intensity,
+        color: utils.color(e.intensity),
+      }));
     },
   },
   methods: {

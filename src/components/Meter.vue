@@ -20,7 +20,8 @@
   </v-row>
   <v-row v-if="landscape">
     <v-col>
-      <div id="meter-caption" v-if="caption" :style="{color: valueColor, textAlign: 'left'}">
+      <div id="meter-caption" v-if="caption" :style="`color: ${valueColor}`"
+      style="text-align: left">
         {{ internalValue }}
       </div>
     </v-col>
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import utils from '../utils';
 
 export default {
   name: 'Meter',
@@ -69,16 +71,18 @@ export default {
       default: true,
     },
   },
-  computed: {},
+  computed: {
+    valueColor() {
+      // return '#424242';
+      return utils.color(this.internalValue);
+    },
+  },
   methods: {
     handleResize() {
       this.landscape = window.innerWidth > window.innerHeight;
     },
     captionMarginTop() {
       return `${this.meterHeight - ((this.meterHeight) / 10 * this.internalValue)}px`;
-    },
-    valueColor() {
-      return 'black';
     },
     // we need this to be able to
     // a) activate a range location
