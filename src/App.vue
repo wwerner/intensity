@@ -69,7 +69,7 @@
         </v-speed-dial>
         <v-snackbar v-model="updateNotification" top color="primary" :timeout="0">
           <v-icon dark>mdi-cellphone-arrow-down</v-icon>
-          Update verfügbar. Installieren?
+          Update verfügbar. Aktualisieren?
           <v-spacer></v-spacer>
           <v-btn success icon
             @click="$store.dispatch('update')">
