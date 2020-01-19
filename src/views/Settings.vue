@@ -9,12 +9,12 @@
       dense
     >
       <v-btn color="secondary" :value="true" style="width: 50%" outlined>
-        <v-icon color="secondary" left>mdi-reorder-horizontal</v-icon>
+        <v-icon color="secondary" left class="ml-1">mdi-reorder-horizontal</v-icon>
         <span style="width: 100%">1.1 -> 1.2</span>
       </v-btn>
       <v-btn color="secondary" :value="false" style="width: 50%" outlined>
         <span style="width: 100%">1 -> 2</span>
-        <v-icon color="secondary" right>mdi-menu</v-icon>
+        <v-icon color="secondary" right class="mr-1">mdi-menu</v-icon>
       </v-btn>
 
     </v-btn-toggle>
