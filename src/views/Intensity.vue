@@ -7,11 +7,13 @@
     />
 
     <v-btn class="mx-2 up-button" outlined small color="error"
+      v-if="$store.state.settings.stepButtons"
       @click="stepPlus()"
     >
       <v-icon large dark>mdi-chevron-up</v-icon>
     </v-btn>
     <v-btn class="mx-2 down-button" outlined small color="success"
+     v-if="$store.state.settings.stepButtons"
      @click="stepMinus()"
     >
       <v-icon large dark>mdi-chevron-down</v-icon>

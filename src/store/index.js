@@ -9,6 +9,7 @@ export default new Vuex.Store({
     intensities: [],
     settings: {
       stepSize: 0.1,
+      stepButtons: true,
     },
     needsUpdate: false,
     updateWorker: undefined,
@@ -21,6 +22,12 @@ export default new Vuex.Store({
     },
     setStepSize: (state, stepSize) => {
       state.settings.stepSize = stepSize;
+    },
+    enableStepButtons: (state) => {
+      state.settings.stepButtons = true;
+    },
+    disableStepButtons: (state) => {
+      state.settings.stepButtons = false;
     },
     deleteHistory: (state) => {
       state.intensities = [];

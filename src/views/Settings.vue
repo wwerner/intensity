@@ -1,12 +1,9 @@
 <template>
   <div class="settings">
     <v-btn-toggle
-      style="width: 100%"
-      block
-      v-model="fine"
-      class="ma-1"
+      style="width: 100%" block class="ma-1" dense
       mandatory
-      dense
+      v-model="fine"
     >
       <v-btn color="secondary" :value="true" style="width: 50%" outlined>
         <v-icon color="secondary" left class="ml-1">mdi-reorder-horizontal</v-icon>
@@ -16,8 +13,23 @@
         <span style="width: 100%">1 -> 2</span>
         <v-icon color="secondary" right class="mr-1">mdi-menu</v-icon>
       </v-btn>
-
     </v-btn-toggle>
+
+    <v-btn-toggle
+      style="width: 100%" block class="ma-1" dense
+      mandatory
+      v-model="buttons"
+    >
+      <v-btn color="secondary" :value="true" style="width: 50%" outlined>
+        <v-icon color="secondary" left class="ml-1">mdi-unfold-more-horizontal</v-icon>
+        <span style="width: 100%">Buttons an</span>
+      </v-btn>
+      <v-btn color="secondary" :value="false" style="width: 50%" outlined>
+        <span style="width: 100%">Buttons aus</span>
+        <v-icon color="secondary" right class="mr-1">mdi-unfold-more-horizontal</v-icon>
+      </v-btn>
+    </v-btn-toggle>
+
     <v-btn class="ma-1 mb-2" block
            color="warning" outlined
            @click="$store.commit('deleteHistory')"
@@ -45,6 +57,16 @@ export default {
           this.$store.commit('setStepSize', 0.1);
         } else {
           this.$store.commit('setStepSize', 1);
+        }
+      },
+    },
+    buttons: {
+      get() { return this.$store.state.settings.stepButtons; },
+      set(newVal) {
+        if (newVal) {
+          this.$store.commit('enableStepButtons');
+        } else {
+          this.$store.commit('disableStepButtons');
         }
       },
     },
