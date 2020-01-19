@@ -71,6 +71,11 @@ export default {
       default: true,
     },
   },
+  watch: {
+    value: function () {
+      this.internalValue = this.value;
+    },
+  },
   computed: {
     valueColor() {
       // return '#424242';
@@ -196,9 +201,12 @@ export default {
 }
 
 @media (orientation: landscape) {
+  #meter {
+    transform: translateY(-25px);
+  }
   #meter
   .v-slider__thumb {
-    transform: rotate(90deg) translateX(-25px) !important;
+    transform: rotate(90deg) translateX(-24px) !important;
   }
 }
 </style>
