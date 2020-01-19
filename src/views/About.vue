@@ -14,7 +14,7 @@
     <p>
       Auch gemacht mit <v-icon color="#3eaf7c">mdi-vuejs</v-icon> <a href="https://vuejs.org/">vue.js</a>,
       <a href="https://vuex.vuejs.org/">vuex</a>,
-      <v-icon color="#1976D2">mdi-vuetify</v-icon> <a href="https://vuetifyjs.com/">Vuetify</a> und
+      <v-icon color="#1976D2">mdi-vuetify</v-icon> <a href="https://vuetifyjs.com/">Vuetify</a>,
       <a href="https://date-fns.org/">date-fns</a> und
       <a href="https://www.highcharts.com/">Highcharts</a>.
       Gehosted auf <v-icon color="black">mdi-triangle</v-icon><a href="https://zeit.co/">Zeit</a>.
