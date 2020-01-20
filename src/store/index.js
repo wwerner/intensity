@@ -17,6 +17,7 @@ export default new Vuex.Store({
   mutations: {
     track: (state, item) => {
       const itemWithTime = item;
+      itemWithTime.intensity = Math.round(itemWithTime.intensity * 10) / 10;
       itemWithTime.timestamp = Date.now();
       state.intensities.push(itemWithTime);
     },

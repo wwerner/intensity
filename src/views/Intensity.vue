@@ -8,12 +8,14 @@
 
     <v-btn class="mx-2 up-button" outlined small color="error"
       v-if="$store.state.settings.stepButtons"
+     :disabled="value >= 10"
       @click="stepPlus()"
     >
       <v-icon large dark>mdi-chevron-up</v-icon>
     </v-btn>
     <v-btn class="mx-2 down-button" outlined small color="success"
      v-if="$store.state.settings.stepButtons"
+     :disabled="value <= 0"
      @click="stepMinus()"
     >
       <v-icon large dark>mdi-chevron-down</v-icon>
@@ -43,9 +45,11 @@ export default {
     },
     stepPlus() {
       this.value = this.value + this.$store.state.settings.stepSize;
+      this.track();
     },
     stepMinus() {
       this.value = this.value - this.$store.state.settings.stepSize;
+      this.track();
     },
   },
   created() {
