@@ -53,6 +53,7 @@ export default {
             .setOpacity(0.1)
             .get('rgba'),
           borderRadius: 20,
+          // eslint-disable-next-line func-names
           formatter: function () {
             return `<b>${this.point.y}</b>, ${formatDistanceToNow(this.point.t, { locale: de, addSuffix: true })}`;
           },

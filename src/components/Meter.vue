@@ -72,6 +72,7 @@ export default {
     },
   },
   watch: {
+    // eslint-disable-next-line func-names
     value: function () {
       this.internalValue = this.value;
     },

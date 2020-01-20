@@ -97,6 +97,7 @@ export default {
     updateAvailable() { return this.$store.state.needsUpdate; },
   },
   watch: {
+    // eslint-disable-next-line func-names
     updateAvailable: function (updateAvailable) {
       this.updateNotification = !!updateAvailable;
     },

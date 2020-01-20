@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import utils from '@/utils';
 
 Vue.use(Vuex);
 
@@ -15,12 +16,14 @@ export default new Vuex.Store({
     updateWorker: undefined,
   },
   mutations: {
-    track: (state, item) => {
+    // eslint-disable-next-line
+    track: utils.debounce(function (state, item) {
       const itemWithTime = item;
       itemWithTime.intensity = Math.round(itemWithTime.intensity * 10) / 10;
       itemWithTime.timestamp = Date.now();
       state.intensities.push(itemWithTime);
-    },
+    }, 1000),
+
     setStepSize: (state, stepSize) => {
       state.settings.stepSize = stepSize;
     },
@@ -33,6 +36,7 @@ export default new Vuex.Store({
     deleteHistory: (state) => {
       state.intensities = [];
     },
+
     updateAvailable: (state, worker) => {
       state.needsUpdate = true;
       state.updateWorker = worker;
