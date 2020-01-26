@@ -8,8 +8,8 @@
       <div id="meter" style="margin: auto;">
         <v-slider
           vertical
-          min="0"
-          max="10"
+          :min="min"
+          :max="max"
           :step="stepSize"
           v-model="internalValue"
           v-on:touchstart.native="convertToMousedown"
@@ -30,8 +30,8 @@
     <v-col>
       <div id="meter">
         <v-slider
-          min="0"
-          max="10"
+          :min="min"
+          :max="max"
           :step="stepSize"
           v-model="internalValue"
           v-on:touchstart.native="convertToMousedown"
@@ -80,6 +80,12 @@ export default {
     valueColor() {
       // return '#424242';
       return utils.color(this.internalValue);
+    },
+    min() {
+      return this.$store.state.settings.scale === 'positive' ? 0 : -10;
+    },
+    max() {
+      return this.$store.state.settings.scale === 'negative' ? 0 : 10;
     },
   },
   methods: {
