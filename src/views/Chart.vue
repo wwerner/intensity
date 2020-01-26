@@ -9,7 +9,12 @@ import { Chart } from 'highcharts-vue';
 import { formatDistanceToNow } from 'date-fns';
 import { de } from 'date-fns/locale';
 import Highcharts from 'highcharts';
+import exportingInit from 'highcharts/modules/exporting';
+
 import utils from '../utils';
+
+exportingInit(Highcharts);
+
 
 Highcharts.setOptions({
   lang: {
@@ -39,6 +44,21 @@ export default {
   computed: {
     chartData() {
       return {
+        exporting: {
+          enabled: true,
+          buttons: {
+            contextButton: {
+              symbol: null,
+              menuItems: null,
+              text: 'Speichern',
+              y: 50,
+              x: -10,
+              onclick: function () {
+                this.exportChart({ type: 'image/png' });
+              },
+            },
+          },
+        },
         chart: {
           zoomType: 'x',
           height: window.innerHeight - 50,
