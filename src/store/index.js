@@ -10,6 +10,7 @@ export default new Vuex.Store({
     settings: {
       stepSize: 0.1,
       stepButtons: true,
+      scale: 'positive',
     },
     needsUpdate: false,
     updateWorker: undefined,
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     updateInstalled: (state) => {
       state.needsUpdate = false;
+    },
+    setScale: (state, scale) => {
+      state.settings.scale = scale;
     },
   },
   getters: {

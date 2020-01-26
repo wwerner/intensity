@@ -30,6 +30,25 @@
       </v-btn>
     </v-btn-toggle>
 
+    <v-btn-toggle
+      style="width: 100%" block class="ma-1" dense
+      mandatory
+      v-model="scale"
+    >
+      <v-btn color="secondary" value="negative" style="width: 33.3%" outlined>
+        <v-icon color="secondary" left class="ml-1">mdi-minus</v-icon>
+        <span style="width: 100%">- 10 - 0</span>
+      </v-btn>
+      <v-btn color="secondary" value="both" style="width: 33.3%" outlined>
+        <v-icon color="secondary" right class="mr-1">mdi-plus-minus</v-icon>
+        <span style="width: 100%">-10 - 10</span>
+      </v-btn>
+      <v-btn color="secondary" value="positive" style="width: 33.3%" outlined>
+        <span style="width: 100%">0 - 10</span>
+        <v-icon color="secondary" right class="mr-1">mdi-plus</v-icon>
+      </v-btn>
+    </v-btn-toggle>
+
     <v-btn class="ma-1 mb-2" block
            color="warning" outlined
            @click="$store.commit('deleteHistory')"
@@ -68,6 +87,12 @@ export default {
         } else {
           this.$store.commit('disableStepButtons');
         }
+      },
+    },
+    scale: {
+      get() { return this.$store.state.settings.scale; },
+      set(newVal) {
+        this.$store.commit('setScale', newVal);
       },
     },
   },
