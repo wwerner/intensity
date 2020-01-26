@@ -58,17 +58,20 @@ export default {
           },
         },
         xAxis: {
-          lineWidth: 0,
+          lineWidth: 1,
           minorTickLength: 0,
           tickLength: 0,
-          visible: false,
+          visible: true,
+          labels: {
+            enabled: false,
+          },
         },
         yAxis: {
-          visible: false,
+          visible: true,
           lineWidth: 0,
           title: '',
-          min: 0,
-          max: 10,
+          min: this.min,
+          max: this.max,
           allowDecimals: false,
         },
         legend: {
@@ -87,7 +90,7 @@ export default {
                 lineWidth: 1,
               },
             },
-            threshold: null,
+            threshold: 0,
           },
         },
 
@@ -107,6 +110,12 @@ export default {
         y: e.intensity,
         color: utils.color(e.intensity),
       }));
+    },
+    min() {
+      return this.$store.state.settings.scale === 'positive' ? 0 : -10;
+    },
+    max() {
+      return this.$store.state.settings.scale === 'negative' ? 0 : 10;
     },
   },
   methods: {
