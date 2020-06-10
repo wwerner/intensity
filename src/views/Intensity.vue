@@ -6,14 +6,14 @@
       :step-size="$store.state.settings.stepSize"
     />
 
-    <v-btn class="mx-2 up-button" outlined small color="error"
+    <v-btn class="mx-2 up-button neo" small
       v-if="$store.state.settings.stepButtons"
      :disabled="value >= 10"
       @click="stepPlus()"
     >
       <v-icon large dark>mdi-chevron-up</v-icon>
     </v-btn>
-    <v-btn class="mx-2 down-button" outlined small color="success"
+    <v-btn class="mx-2 down-button neo" small
      v-if="$store.state.settings.stepButtons"
      :disabled="value <= 0"
      @click="stepMinus()"
@@ -66,11 +66,13 @@ export default {
   .up-button {
     position: absolute;
     min-height: 52px;
+    color: var(--v-error-base);
   }
 
   .down-button {
     position: absolute;
     min-height: 52px;
+    color: var(--v-success-base);
   }
 
   @media (orientation: portrait) {
@@ -106,4 +108,10 @@ export default {
     }
   }
 
+  .neo {
+    border-radius: 5px;
+    background: #f5f5f5;
+    box-shadow:  6px 6px 6px #7b7b7b,
+             -6px -6px 6px #ffffff;
+    }
 </style>
