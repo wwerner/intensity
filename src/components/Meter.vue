@@ -2,6 +2,7 @@
 <div id="meter-container" v-resize="handleResize">
   <v-row v-if="!landscape" justify="center">
       <div id="meter-caption" v-if="caption"
+            class="neotext"
            :style="{color: valueColor, textAlign: 'center'}">
         {{ internalValue }}
       </div>
@@ -129,11 +130,15 @@ export default {
   position: fixed;
   top: 0;
   left: 0.25em;
+    text-shadow:  3px 3px 3px #ababab,
+                 -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--vertical {
   height: 82vh;
   background: linear-gradient(to top, green, yellow 35%, red 75%);
+  box-shadow:  6px 6px 6px #7b7b7b,
+              -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--horizontal {
@@ -141,6 +146,8 @@ export default {
   margin-right: 1.25em;
   height: 100px;
   background: linear-gradient(to right, green, yellow 35%, red 75%);
+  box-shadow:  6px 6px 6px #7b7b7b,
+            -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--vertical .v-slider__track-container {
@@ -191,13 +198,19 @@ export default {
 
 #meter
 .v-slider__thumb-container--active .v-slider__thumb:before {
-  transform: scale(1.1) !important;
+  transform: scale(1) !important;
   top: 0;
 }
 
 @media (orientation: portrait) {
   #meter {
     width: 100px !important;
+  }
+
+   #meter
+   .v-slider__thumb {
+      background: #f5f5f5;
+      box-shadow:  6px 6px 6px #4b4b4b ;
   }
 }
 
@@ -208,6 +221,8 @@ export default {
   #meter
   .v-slider__thumb {
     transform: rotate(90deg) translateX(-24px) !important;
+      background: #f5f5f5;
+      box-shadow:  6px -6px 6px #4b4b4b ;
   }
 }
 </style>

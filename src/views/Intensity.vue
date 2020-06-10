@@ -92,6 +92,13 @@ export default {
       min-width: 52px;
     }
 
+    .neo {
+    border-radius: 5px;
+    background: #f5f5f5;
+    box-shadow:  6px 6px 6px #7b7b7b,
+                -6px -6px 6px #ffffff !important;
+  }
+
   }
 
   @media (orientation: landscape) {
@@ -105,13 +112,13 @@ export default {
       left: 24px;
       bottom: 10vh;
       transform: rotate(90deg);
-    }
   }
 
-  .neo {
+      .neo {
     border-radius: 5px;
     background: #f5f5f5;
-    box-shadow:  6px 6px 6px #7b7b7b,
-             -6px -6px 6px #ffffff;
+    box-shadow:  6px -6px 6px #7b7b7b,
+                -6px 6px 6px #ffffff !important;
     }
+  }
 </style>

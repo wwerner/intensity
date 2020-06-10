@@ -11,6 +11,7 @@
         </transition>
         <v-speed-dial
           v-model="menu"
+          class="neo"
           bottom absolute right fixed
           direction="top"
           transition="slide-y-reverse-transition"
@@ -30,6 +31,7 @@
             fab
             dark
             small
+            class="neo"
             color="green"
             to="/chart"
             aria-label="Auswertung"
@@ -39,6 +41,7 @@
           <v-btn
             fab
             dark
+            class="neo"
             small
             color="yellow darken-2"
             to="/about"
@@ -50,6 +53,7 @@
             fab
             dark
             small
+            class="neo"
             color="orange"
             to="/settings"
             aria-label="Einstellungen"
@@ -60,6 +64,7 @@
             fab
             dark
             small
+            class="neo"
             color="red"
             to="/"
             aria-label="Intensität"
@@ -127,5 +132,11 @@ export default {
 .fade-leave-active {
   opacity: 0
 }
+
+ .neo {
+    border-radius: 50px;
+    background: #f5f5f5;
+    box-shadow:  6px 6px 6px #7b7b7b !important;
+  }
 
 </style>
