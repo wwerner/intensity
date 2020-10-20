@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mdi/font": "^3.6.95",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.0",
     "highcharts": "^7.2.1",
