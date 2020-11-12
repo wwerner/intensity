@@ -17,7 +17,7 @@
     "now": "^16.7.3",
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
-    "vue": "^2.6.10",
+    "vue": "^2.6.12",
     "vue-router": "^3.4.3",
     "vuetify": "^2.3.15",
     "vuex": "^3.5.1",
