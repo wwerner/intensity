@@ -10,7 +10,7 @@
   "dependencies": {
     "@mdi/font": "^3.6.95",
     "chart.js": "^2.9.4",
-    "core-js": "^3.7.0",
+    "core-js": "^3.21.0",
     "date-fns": "^2.16.1",
     "highcharts": "^9.0.0",
     "highcharts-vue": "^1.3.5",
