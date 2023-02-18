@@ -15,6 +15,17 @@
       </v-btn>
     </v-btn-toggle>
 
+    <v-btn-toggle style="width: 100%" block class="ma-1" dense mandatory v-model="intensityDisplay">
+      <v-btn color="secondary" :value="true" style="width: 50%" outlined>
+        <v-icon color="secondary" left class="ml-1">mdi-reorder-horizontal</v-icon>
+        <span style="width: 100%">Intensität anzeigen</span>
+      </v-btn>
+      <v-btn color="secondary" :value="false" style="width: 50%" outlined>
+        <span style="width: 100%">Intensität ausblenden</span>
+        <v-icon color="secondary" right class="mr-1">mdi-menu</v-icon>
+      </v-btn>
+    </v-btn-toggle>
+
     <v-btn-toggle
       style="width: 100%" block class="ma-1" dense
       mandatory
@@ -67,6 +78,18 @@ export default {
           this.$store.commit('enableStepButtons');
         } else {
           this.$store.commit('disableStepButtons');
+        }
+      },
+    },
+    intensityDisplay: {
+      get() {
+        return this.$store.state.settings.displayIntensity;
+      },
+      set(newVal) {
+        if (newVal) {
+          this.$store.commit('displayIntensity');
+        } else {
+          this.$store.commit('hideIntensity');
         }
       },
     },

@@ -4,6 +4,7 @@
       v-model="value"
       @input="track"
       :step-size="$store.state.settings.stepSize"
+      :caption="$store.state.settings.displayIntensity"
     />
 
     <v-btn class="mx-2 up-button neo" small
