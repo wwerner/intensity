@@ -1,9 +1,12 @@
 <template>
-<div id="meter-container" v-resize="handleResize">
-  <v-row v-if="!landscape" justify="center">
-      <div id="meter-caption" v-if="caption"
-            class="neotext"
-           :style="{color: valueColor, textAlign: 'center'}">
+  <div id="meter-container" v-resize="handleResize">
+    <v-row v-if="!landscape" justify="center">
+      <div
+        id="meter-caption"
+        v-if="caption"
+        class="neotext"
+        :style="{ color: valueColor, textAlign: 'center' }"
+      >
         {{ internalValue }}
       </div>
       <div id="meter" style="margin: auto;">
@@ -18,31 +21,35 @@
         >
         </v-slider>
       </div>
-  </v-row>
-  <v-row v-if="landscape">
-    <v-col>
-      <div id="meter-caption" v-if="caption" :style="`color: ${valueColor}`"
-      style="text-align: left">
-        {{ internalValue }}
-      </div>
-    </v-col>
-  </v-row>
-  <v-row v-if="landscape" align="center" style="height: 80vh">
-    <v-col>
-      <div id="meter">
-        <v-slider
-          min="0"
-          max="10"
-          :step="stepSize"
-          v-model="internalValue"
-          v-on:touchstart.native="convertToMousedown"
-          @change="$emit('input', internalValue)"
+    </v-row>
+    <v-row v-if="landscape">
+      <v-col>
+        <div
+          id="meter-caption"
+          v-if="caption"
+          :style="`color: ${valueColor}`"
+          style="text-align: left"
         >
-        </v-slider>
-      </div>
-    </v-col>
-  </v-row>
-</div>
+          {{ internalValue }}
+        </div>
+      </v-col>
+    </v-row>
+    <v-row v-if="landscape" align="center" style="height: 80vh">
+      <v-col>
+        <div id="meter">
+          <v-slider
+            min="0"
+            max="10"
+            :step="stepSize"
+            v-model="internalValue"
+            v-on:touchstart.native="convertToMousedown"
+            @change="$emit('input', internalValue)"
+          >
+          </v-slider>
+        </div>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -89,7 +96,7 @@ export default {
       this.landscape = window.innerWidth > window.innerHeight;
     },
     captionMarginTop() {
-      return `${this.meterHeight - ((this.meterHeight) / 10 * this.internalValue)}px`;
+      return `${this.meterHeight - (this.meterHeight / 10) * this.internalValue}px`;
     },
     // we need this to be able to
     // a) activate a range location
@@ -99,10 +106,23 @@ export default {
       const first = touches[0];
 
       const simulatedEvent = document.createEvent('MouseEvent');
-      simulatedEvent.initMouseEvent('click', true, true, window, 1,
-        first.screenX, first.screenY,
-        first.clientX, first.clientY, false,
-        false, false, false, 0, null);
+      simulatedEvent.initMouseEvent(
+        'click',
+        true,
+        true,
+        window,
+        1,
+        first.screenX,
+        first.screenY,
+        first.clientX,
+        first.clientY,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null,
+      );
 
       first.target.dispatchEvent(simulatedEvent);
       e.preventDefault();
@@ -111,8 +131,7 @@ export default {
   mounted() {
     this.internalValue = this.value;
     this.$nextTick(() => {
-      this.meterHeight = document.getElementById('meter')
-        .getBoundingClientRect().height;
+      this.meterHeight = document.getElementById('meter').getBoundingClientRect().height;
     });
   },
 };
@@ -130,15 +149,13 @@ export default {
   position: fixed;
   top: 0;
   left: 0.25em;
-    text-shadow:  3px 3px 3px #ababab,
-                 -6px -6px 6px #ffffff !important;
+  text-shadow: 3px 3px 3px #ababab, -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--vertical {
   height: 82vh;
   background: linear-gradient(to top, green, yellow 35%, red 75%);
-  box-shadow:  6px 6px 6px #7b7b7b,
-              -6px -6px 6px #ffffff !important;
+  box-shadow: 6px 6px 6px #7b7b7b, -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--horizontal {
@@ -146,22 +163,19 @@ export default {
   margin-right: 1.25em;
   height: 100px;
   background: linear-gradient(to right, green, yellow 35%, red 75%);
-  box-shadow:  6px 6px 6px #7b7b7b,
-            -6px -6px 6px #ffffff !important;
+  box-shadow: 6px 6px 6px #7b7b7b, -6px -6px 6px #ffffff !important;
 }
 
 #meter .v-slider--vertical .v-slider__track-container {
   width: 100px !important;
 }
 
-#meter
-.v-slider .v-slider__track-container .primary {
+#meter .v-slider .v-slider__track-container .primary {
   background: transparent !important;
   border-color: transparent !important;
 }
 
-#meter
-.v-slider__thumb {
+#meter .v-slider__thumb {
   position: absolute;
   width: 120px;
   height: 3em;
@@ -178,8 +192,7 @@ export default {
   user-select: none;
 }
 
-#meter
-.v-slider__thumb::before {
+#meter .v-slider__thumb::before {
   position: absolute;
   width: 120px;
   height: 3em;
@@ -196,8 +209,7 @@ export default {
   user-select: none;
 }
 
-#meter
-.v-slider__thumb-container--active .v-slider__thumb:before {
+#meter .v-slider__thumb-container--active .v-slider__thumb:before {
   transform: scale(1) !important;
   top: 0;
 }
@@ -207,10 +219,9 @@ export default {
     width: 100px !important;
   }
 
-   #meter
-   .v-slider__thumb {
-      background: #f5f5f5;
-      box-shadow:  6px 6px 6px #4b4b4b ;
+  #meter .v-slider__thumb {
+    background: #f5f5f5;
+    box-shadow: 6px 6px 6px #4b4b4b;
   }
 }
 
@@ -218,11 +229,10 @@ export default {
   #meter {
     transform: translateY(-25px);
   }
-  #meter
-  .v-slider__thumb {
+  #meter .v-slider__thumb {
     transform: rotate(90deg) translateX(-24px) !important;
-      background: #f5f5f5;
-      box-shadow:  6px -6px 6px #4b4b4b ;
+    background: #f5f5f5;
+    box-shadow: 6px -6px 6px #4b4b4b;
   }
 }
 </style>
