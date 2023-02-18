@@ -11,13 +11,14 @@ export default new Vuex.Store({
     settings: {
       stepSize: 0.1,
       stepButtons: true,
+      displayIntensity: true,
     },
     needsUpdate: false,
     updateWorker: undefined,
   },
   mutations: {
     // eslint-disable-next-line
-    track: utils.debounce(function (state, item) {
+    track: utils.debounce(function(state, item) {
       const itemWithTime = item;
       itemWithTime.intensity = Math.round(itemWithTime.intensity * 10) / 10;
       itemWithTime.timestamp = Date.now();
@@ -32,6 +33,12 @@ export default new Vuex.Store({
     },
     disableStepButtons: (state) => {
       state.settings.stepButtons = false;
+    },
+    displayIntensity: (state) => {
+      state.settings.displayIntensity = true;
+    },
+    hideIntensity: (state) => {
+      state.settings.displayIntensity = false;
     },
     deleteHistory: (state) => {
       state.intensities = [];
@@ -61,8 +68,10 @@ export default new Vuex.Store({
     },
   },
   modules: {},
-  plugins: [createPersistedState({
-    key: 'intensity-v3',
-    paths: ['intensities', 'settings'],
-  })],
+  plugins: [
+    createPersistedState({
+      key: 'intensity-v3',
+      paths: ['intensities', 'settings'],
+    }),
+  ],
 });
