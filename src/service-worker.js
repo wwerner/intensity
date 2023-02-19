@@ -10,3 +10,18 @@ self.addEventListener('message', (msg) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      const preloadResp = await event.preloadResponse;
+
+      if (preloadResp) {
+        return preloadResp;
+      }
+
+      const networkResp = await fetch(event.request);
+      return networkResp;
+    })());
+  }
+});
