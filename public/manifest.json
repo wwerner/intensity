@@ -20,12 +20,12 @@
     "type": "image/png"
   },
   {
-    "src": "/mstile-150x150.png",
-    "sizes": "150x150",
+    "src": "/mstile-270x270.png",
+    "sizes": "270x270",
     "type": "image/png"
   },
   {
-    "src": "/safari-pinned-tab.png",
+    "src": "/safari-pinned-tab.svg",
     "sizes": "512x512",
     "type": "image/svg"
   }
