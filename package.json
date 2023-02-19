@@ -1,6 +1,6 @@
 {
   "name": "intensity",
-  "version": "0.3.0",
+  "version": "0.3.q",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
